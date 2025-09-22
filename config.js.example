@@ -1,0 +1,11 @@
+// Archivo de configuración
+const CONFIG = {
+    API_URL: 'REMPLAZA_POR_LA_URL_DE_N8N_WEBHOOK'
+};
+
+// Exportar para uso en otros archivos
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = CONFIG;
+} else {
+    window.CONFIG = CONFIG;
+}
