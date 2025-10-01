@@ -19,7 +19,7 @@ jobs:
 
       - name: Replace API URL Placeholder in HTML 🤫
         run: |
-          sed -i "s|__API_URL_PLACEHOLDER__|${{ secrets.API_KEY_OPENAI }}|g" index.html
+          sed -i "s|__API_URL_PLACEHOLDER__|${{ secrets.URL_API }}|g" index.html
       
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
