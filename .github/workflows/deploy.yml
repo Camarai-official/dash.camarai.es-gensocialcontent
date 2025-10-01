@@ -1,0 +1,29 @@
+# Archivo: .github/workflows/deploy.yml
+
+name: Build and Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main # O la rama que uses para desplegar
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v3
+
+      - name: Replace API URL Placeholder 🤫
+        # Este comando busca y reemplaza el marcador en tu archivo config.js
+        # Usa el secret que has guardado en GitHub con el nombre URL_API
+        run: |
+          sed -i "s|__API_URL_PLACEHOLDER__|${{ secrets.URL_API }}|g" config.js
+        # El comando 'sed' busca la cadena "__API_URL_PLACEHOLDER__" en config.js
+        # y la reemplaza con el valor de tu secret.
+
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages # La rama donde se despliega (usualmente gh-pages)
+          folder: . # El directorio que contiene tu código (en este caso, la raíz)
